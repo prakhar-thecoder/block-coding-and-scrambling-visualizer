@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Signal Plotter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        input, select { margin: 10px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Digital Signal Plotter</h2>
+    <form method="post" action="/block-coding">
+        <label>Binary Sequence:</label>
+        <input type="text" name="binary_sequence" required>
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if plot_url %}
+        <h3>Generated Signal:</h3>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Signal Plot">
+    {% endif %}
+</body>
+</html>
