@@ -1,3 +1,5 @@
+import base64
+import io
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -31,9 +33,17 @@ def plot_graph(data, ylim=[-1.5, 1.5], text=[]):
     plt.xlim(-padding, len(data) * bit_duration + padding)
     plt.ylim(ylim[0], ylim[1])
 
-    plt.show()
+    # Save the plot to a BytesIO object
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    plt.close()
+
+    # Encode the image to base64
+    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    return img_base64
 
 
 if __name__ == '__main__':
     data = [1, 0, -1, 0, 0, 1, 1, -1]
-    plot_graph(data)
+    print(plot_graph(data))

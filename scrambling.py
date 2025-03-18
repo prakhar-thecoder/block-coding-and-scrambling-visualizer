@@ -28,7 +28,8 @@ def B8ZS(pattern):
                 continue
         i += 1
 
-    plot.plot_graph(new_pattern, text=pattern)
+    img = plot.plot_graph(new_pattern, text=pattern)
+    return (pattern, new_pattern, img)
 
 def HDB3(pattern):
     new_pattern = []
@@ -67,7 +68,8 @@ def HDB3(pattern):
                 continue
         i += 1
 
-    plot.plot_graph(new_pattern, text=pattern)
+    img = plot.plot_graph(new_pattern, text=pattern)
+    return (pattern, new_pattern, img)
 
 
 if __name__ == '__main__':

@@ -29,7 +29,8 @@ def map_4B5B(pattern):
     mapped = ''.join(mapped)
     mapped = [int(bit) for bit in mapped]
     
-    plot.plot_graph(mapped, ylim=[-0.1, 1.5], text=mapped)
+    img = plot.plot_graph(mapped, ylim=[-0.1, 1.5], text=mapped)
+    return (mapped, mapped, img)
 
 
 if __name__ == '__main__':
