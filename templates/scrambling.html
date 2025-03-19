@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center justify-center bg-cover bg-center space-y-10">
+
+    <!-- Scrambling Encoder -->
+    <div class="bg-white bg-opacity-70 p-8 rounded-xl shadow-lg backdrop-blur-md text-center animate-fadeIn">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Scrambling Encoder</h2>
+
+        <form method="post" class="space-y-4">
+            <div>
+                <label class="text-lg font-semibold text-gray-700">Binary Sequence:</label>
+                <input type="text" name="binary_sequence" required 
+                    class="border rounded-lg px-4 py-2 w-full mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="text-lg font-semibold text-gray-700">Encoding:</label>
+                <select name="encoding" 
+                    class="border rounded-lg px-4 py-2 w-full mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="B8ZS">B8ZS</option>
+                    <option value="HDB3">HDB3</option>
+                </select>
+            </div>
+
+            <button type="submit" 
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                Generate Signal
+            </button>
+        </form>
+
+        {% if plot_url %}
+            <h3 class="text-xl font-semibold text-gray-800 mt-6">Generated Signal:</h3>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Signal Plot" class="rounded-lg shadow-lg mt-4 animate-fadeIn">
+        {% endif %}
+    </div>
+
+    <!-- New Line and Scrambling Explanation -->
+    <div class="bg-white bg-opacity-70 p-8 rounded-xl shadow-lg backdrop-blur-md text-center animate-fadeIn delay-200">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">How Scrambling works?</h2>
+    </div>
+
+</div>
+
+<style>
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+    animation: fadeIn 1s ease-out;
+}
+</style>
+
+{% endblock %}

@@ -1,26 +1,25 @@
-from flask import *
-from flask_cors import CORS
-import block_coding
-
+from flask import Flask, render_template, request
+import matplotlib.pyplot as plt
+import numpy as np
+import io
+import base64
 
 app = Flask(__name__)
-CORS(app)
-app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/block-coding", methods=["POST"])
-def block_coding_4B5B():
-    if request.method == "POST":
-        binary_seq = request.form["binary_sequence"]
 
-        pattern, new_pattern, img = block_coding.map_4B5B(binary_seq)
-        
-        return render_template("index.html", plot_url=img)
+@app.route("/block-coding")
+def block_coding():
+    return render_template("block_code.html")
 
+@app.route("/scrambling")
+def scrambling():
+    return render_template("scrambling.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
