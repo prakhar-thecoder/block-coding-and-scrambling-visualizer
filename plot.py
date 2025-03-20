@@ -1,8 +1,9 @@
 import base64
 import io
+import matplotlib
+matplotlib.use('Agg')  # Use non-GUI backend before importing pyplot
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 def plot_graph(data, ylim=[-1.5, 1.5], text=[]):
     bit_duration = 1
@@ -17,7 +18,7 @@ def plot_graph(data, ylim=[-1.5, 1.5], text=[]):
         signal.extend([bit, bit])
 
     plt.figure(figsize=(8, 4))
-    plt.plot(t_axis, signal, color='magenta', linewidth=4)
+    plt.plot(t_axis, signal, color='blue', linewidth=4)
 
     for i, bit in enumerate(text):
         plt.text(i * bit_duration + 0.5, 1.2, str(bit), fontsize=12, color='magenta', ha='center')

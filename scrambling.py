@@ -1,5 +1,5 @@
 import plot
-
+import plot
 
 def B8ZS(pattern):
     new_pattern = []
