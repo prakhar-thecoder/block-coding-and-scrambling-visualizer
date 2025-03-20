@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center relative">
-    <div class="absolute inset-0 bg-cover bg-center bg-fixed opacity-70" style="background-image: url('{{ url_for('static', filename='digital.jpg') }}');"></div>
-    <div class="text-center bg-white bg-opacity-70 p-20 rounded-lg shadow-lg relative z-10">
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: url('{{ url_for('static', filename='digital.jpg') }}');">
+    <div class="text-center bg-white bg-opacity-70 p-20 rounded-lg shadow-lg animate-fadeIn">
         <h1 class="text-5xl font-extrabold text-gray-900">Welcome to SignalPlot</h1>
         <p class="text-lg text-gray-700 mt-2">Visualizing Digital Signals with Ease</p>
         
@@ -16,5 +15,15 @@
             </a>
         </div>
     </div>
+    
 </div>
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 1s ease-out;
+    }
+</style>
 {% endblock %}

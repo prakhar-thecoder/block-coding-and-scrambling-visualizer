@@ -4,7 +4,7 @@
 <div class="min-h-screen flex flex-col items-center justify-center bg-cover bg-center space-y-10">
 
     <!-- Scrambling Encoder -->
-    <div class="bg-white bg-opacity-70 p-8 rounded-xl shadow-lg backdrop-blur-md text-center animate-fadeIn">
+    <div class="bg-white bg-opacity-70 p-10 rounded-xl shadow-lg backdrop-blur-md text-center animate-fadeIn mt-10">
         <h2 class="text-4xl font-bold text-gray-900 mb-4">Scrambling Encoder</h2>
 
         <form method="post" class="space-y-4">
@@ -30,14 +30,43 @@
         </form>
 
         {% if plot_url %}
-            <h3 class="text-xl font-semibold text-gray-800 mt-6">Generated Signal:</h3>
+            <h3 class="text-xl font-semibold text-gray-800 mt-6">Generated Signal: ({{encoding_type}})</h3>
+            <p class="text-lg text-gray-700 text-left mt-5"><strong>I/P Signal:</strong> {{ binary_sequence }}</p>
+            <p class="text-lg text-gray-700 text-left"><strong>Scrambled Signal:</strong> {{ scrambled_string }}</p>
             <img src="data:image/png;base64,{{ plot_url }}" alt="Signal Plot" class="rounded-lg shadow-lg mt-4 animate-fadeIn">
+            
         {% endif %}
     </div>
 
     <!-- New Line and Scrambling Explanation -->
-    <div class="bg-white bg-opacity-70 p-8 rounded-xl shadow-lg backdrop-blur-md text-center animate-fadeIn delay-200">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">How Scrambling works?</h2>
+    <div class="bg-white bg-opacity-70 p-8 rounded-xl shadow-lg backdrop-blur-md  animate-fadeIn delay-200">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 text-center">How Scrambling works?</h2>
+        <ul class="text-xl text-gray-700 mt-5 text-left list-disc pl-10">
+            <li><strong>Biphase schemes</strong> are not suitable for long-distance communications due to wide bandwidth requirements.</li>
+            <li><strong>Combination of block codes and NRZ line coding</strong> is not suitable for long-distance communications due to the DC component.</li>
+            <li><strong>Scrambling</strong> offers a solution that does not increase the number of bits and provides synchronization.</li>
+            <li>Modifies part of the AMI rule to include scrambling.</li>
+            <li>The system inserts required pulses based on the defined scrambling rules.</li>
+        </ul>        
+        <h4  class="text-2xl font-bold text-gray-900 mt-3 mb-4 text-left"> 1. B8ZS </h4>
+        <p class = "text-lg text-gray-700 text-left mt-5">
+            B8ZS substitutes eight consecutive zeros with 000VB0VB.
+            The V stands for violation, it violates the line encoding rule
+            B stands for bipolar, it implements the bipolar line encoding rule
+        </p>             
+        <img src ={{ url_for('static', filename='b8zs.png') }} class ="bg-opacity-70 p-8 rounded-xl shadow-lg w-lg">
+        <h4  class="text-2xl font-bold text-gray-900 mb-4 text-left"> 2. HDB3 </h4>
+        <p class = "text-lg text-gray-700 text-left mt-5">
+            HDB3 substitutes four consecutive zeros with 000V or B00V depending on the number of nonzero pulses after the last substitution.
+            <br>
+            -- If total no of non zero pulses is even the substitution is B00V to make total no of non zero pulse even.
+            <br>
+            -- If total no of non zero pulses is odd the substitution is 000V to make total no of non zero pulses even.
+
+        </p>             
+        <div class = "max-w-screen-lg mx-auto pb-10 flex">
+            <img src ={{ url_for('static', filename='hdb3.png') }} class ="object-center bg-opacity-70 p-8 rounded-xl shadow-lg w-lg">
+        </div>
     </div>
 
 </div>
