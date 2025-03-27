@@ -5,7 +5,7 @@
 
     <!-- Scrambling Encoder -->
     <div class="bg-white bg-opacity-70 p-10 rounded-xl shadow-lg backdrop-blur-md text-center animate-fadeIn mt-10">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">Scrambling Encoder</h2>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Scrambling & Block Coding Encoder</h2>
 
         <form method="post" class="space-y-4">
             <div>
@@ -24,16 +24,16 @@
         {% if plot_url_1 %}
             <h3 class="text-xl font-semibold text-gray-800 mt-6">Generated Signal: </h3>
             <p class="text-lg text-gray-700 text-left mt-5"><strong>I/P Signal:</strong> {{ binary_sequence }}</p>
-            <p class="text-lg text-gray-700 text-left"><strong>B8ZS Signal:</strong> {{ scrambled_string_1 }}</p>
+            <p class="text-lg text-gray-700 text-left mt-2"><strong>B8ZS Signal:</strong> {{ scrambled_string_1 }}</p>
             <img src="data:image/png;base64,{{ plot_url_1 }}" alt="Signal Plot" class="rounded-lg shadow-lg mt-4 animate-fadeIn">
             
-            <p class="text-lg text-gray-700 text-left"><strong>HDB3 Signal:</strong> {{ scrambled_string_1 }}</p>
+            <p class="text-lg text-gray-700 text-left mt-2"><strong>HDB3 Signal:</strong> {{ scrambled_string_1 }}</p>
             <img src="data:image/png;base64,{{ plot_url_2 }}" alt="Signal Plot" class="rounded-lg shadow-lg mt-4 animate-fadeIn">
             
-            <p class="text-lg text-gray-700 text-left"><strong>4B5B Signal:</strong> {{ blocked_string_1 }}</p>
+            <p class="text-lg text-gray-700 text-left mt-2"><strong>4B/5B Signal:</strong> {{ blocked_string_1 }}</p>
             <img src="data:image/png;base64,{{ plot_url_3 }}" alt="Signal Plot" class="rounded-lg shadow-lg mt-4 animate-fadeIn">
             
-            <p class="text-lg text-gray-700 text-left"><strong>8B10B Signal:</strong> {{ blocked_string_2 }}</p>
+            <p class="text-lg text-gray-700 text-left mt-2"><strong>8B/10B Signal:</strong> {{ blocked_string_2 }}</p>
             <img src="data:image/png;base64,{{ plot_url_4 }}" alt="Signal Plot" class="rounded-lg shadow-lg mt-4 animate-fadeIn">
             
         {% endif %}
