@@ -59,5 +59,54 @@ def scrambling():
 
     return render_template("scrambling.html", binary_sequence=None, encoding_type=None, scrambled_string=None, plot_url=None)
 
+@app.route('/all-in-one', methods=["GET", "POST"])
+def all_in_one():
+    if request.method == "POST":
+        binary_sequence_input = request.form.get("binary_sequence")
+        
+      
+        binary_sequence_output_1, scrambled_signal_1, plot_url_1 = B8ZS(binary_sequence_input)
+        binary_sequence_output_2, scrambled_signal_2, plot_url_2 = HDB3(binary_sequence_input)
+        binary_sequence_output_3, blocked_signal_1, plot_url_3 = map_4B5B(binary_sequence_input)
+        binary_sequence_output_4, blocked_signal_2, plot_url_4 = map_8B10B(binary_sequence_input)
+
+       
+        binary_sequence_display = " ".join(binary_sequence_input)
+        scrambled_string_1 = " ".join(map(str, scrambled_signal_1))
+        scrambled_string_2 = " ".join(map(str, scrambled_signal_2))
+        blocked_string_1 = " ".join(map(str, blocked_signal_1))
+        blocked_string_2 = " ".join(map(str, blocked_signal_2))
+
+        return render_template(
+            "all_in_one.html",
+            binary_sequence=binary_sequence_display,
+            scrambled_string_1=scrambled_string_1,
+            scrambled_string_2=scrambled_string_2,
+            blocked_string_1=blocked_string_1,
+            blocked_string_2=blocked_string_2,
+            plot_url_1=plot_url_1,
+            plot_url_2=plot_url_2,
+            plot_url_3=plot_url_3,
+            plot_url_4=plot_url_4
+        )
+
+
+    return render_template(
+        "all_in_one.html",
+        binary_sequence=None,
+        scrambled_string_1=None,
+        scrambled_string_2=None,
+        blocked_string_1=None,
+        blocked_string_2=None,
+        plot_url_1=None,
+        plot_url_2=None,
+        plot_url_3=None,
+        plot_url_4=None
+    )
+
+
+
+    
+
 if __name__ == "__main__":
     app.run(debug=True)
